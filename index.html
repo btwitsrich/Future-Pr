@@ -31,6 +31,7 @@
             background-color: #4CAF50;
             color: white;
             cursor: pointer;
+            margin: 5px;
         }
 
         button:hover {
@@ -41,6 +42,8 @@
             margin-top: 20px;
             font-size: 20px;
             color: #333;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
     </style>
 </head>
@@ -48,8 +51,10 @@
     <div class="container">
         <h1>Fortune Teller</h1>
         <button id="fortuneButton">Tell me my fortune!</button>
+        <button id="resetButton" style="display: none;">Reset</button>
         <p id="fortuneMessage"></p>
     </div>
+    <audio id="fortuneSound" src="https://www.soundjay.com/button/sounds/button-3.mp3"></audio>
     <script>
         const fortunes = [
             "You will have a great day!",
@@ -64,10 +69,27 @@
             "You will discover a new talent."
         ];
 
-        document.getElementById('fortuneButton').addEventListener('click', function() {
+        const fortuneButton = document.getElementById('fortuneButton');
+        const resetButton = document.getElementById('resetButton');
+        const fortuneMessage = document.getElementById('fortuneMessage');
+        const fortuneSound = document.getElementById('fortuneSound');
+
+        fortuneButton.addEventListener('click', function() {
+            fortuneButton.disabled = true; // Disable button
             const randomIndex = Math.floor(Math.random() * fortunes.length);
-            const fortuneMessage = fortunes[randomIndex];
-            document.getElementById('fortuneMessage').innerText = fortuneMessage;
+            const message = fortunes[randomIndex];
+            fortuneMessage.innerText = message;
+            fortuneMessage.style.opacity = 1; // Fade in effect
+            fortuneSound.play(); // Play sound
+
+            resetButton.style.display = 'inline'; // Show reset button
+        });
+
+        resetButton.addEventListener('click', function() {
+            fortuneMessage.innerText = '';
+            fortuneMessage.style.opacity = 0; // Fade out effect
+            fortuneButton.disabled = false; // Enable button
+            resetButton.style.display = 'none'; // Hide reset button
         });
     </script>
 </body>
