@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune Teller</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #fortuneMessage {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fortune Teller</h1>
+        <button id="fortuneButton">Tell me my fortune!</button>
+        <p id="fortuneMessage"></p>
+    </div>
+    <script>
+        const fortunes = [
+            "You will have a great day!",
+            "Something wonderful is about to happen.",
+            "You will find joy in unexpected places.",
+            "A new opportunity will come your way.",
+            "You will achieve your goals soon.",
+            "Happiness is around the corner.",
+            "You will meet someone special.",
+            "Your hard work will pay off.",
+            "Good fortune will come to you.",
+            "You will discover a new talent."
+        ];
+
+        document.getElementById('fortuneButton').addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            const fortuneMessage = fortunes[randomIndex];
+            document.getElementById('fortuneMessage').innerText = fortuneMessage;
+        });
+    </script>
+</body>
+</html>
